@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>일본 대학원 생물계열 수험 가이드 / 日本大学院 生物系 受験ガイド</title>
+  <style>
+    /* ──────────────────────────────────────────
+       Base & Reset
+    ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:   #1a3f6f;
+      --secondary: #2e7d9e;
+      --accent:    #e07b2a;
+      --accent2:   #c0392b;
+      --bg:        #f5f7fb;
+      --card:      #ffffff;
+      --border:    #d0daea;
+      --text:      #1e2a3a;
+      --muted:     #5a6a80;
+      --ja-color:  #1b4d3e;
+      --ja-bg:     #eaf4f0;
+      --ko-color:  #1a3f6f;
+      --ko-bg:     #eef3fb;
+      --warn-bg:   #fff8e1;
+      --warn-border:#f9a825;
+      --tip-bg:    #e8f5e9;
+      --tip-border:#43a047;
+      --radius:    10px;
+      --shadow:    0 2px 12px rgba(0,0,0,.08);
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Noto Sans JP', 'Malgun Gothic', 'MS PGothic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    /* ──────────────────────────────────────────
+       Hero Header
+    ────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 56px 32px 48px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 20px;
+      font-size: 12px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+      letter-spacing: .06em;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .hero h2 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      opacity: .85;
+      margin-bottom: 18px;
+    }
+    .hero .subtitle {
+      font-size: .9rem;
+      opacity: .7;
+    }
+
+    /* ──────────────────────────────────────────
+       Layout
+    ────────────────────────────────────────── */
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ──────────────────────────────────────────
+       Warning / Notice Block
+    ────────────────────────────────────────── */
+    .notice {
+      background: var(--warn-bg);
+      border-left: 5px solid var(--warn-border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 28px 0 10px;
+      font-size: .88rem;
+    }
+    .notice strong { color: #b26a00; }
+
+    /* ──────────────────────────────────────────
+       TOC
+    ────────────────────────────────────────── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 24px 0 36px;
+      box-shadow: var(--shadow);
+    }
+    .toc h3 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc ol {
+      padding-left: 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 24px;
+    }
+    .toc li { font-size: .9rem; }
+    .toc a { color: var(--secondary); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    @media(max-width:600px) { .toc ol { grid-template-columns: 1fr; } }
+
+    /* ──────────────────────────────────────────
+       Section
+    ────────────────────────────────────────── */
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-header .num {
+      background: rgba(255,255,255,.2);
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem; flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .section-header h2 .ja {
+      display: block;
+      font-size: .85rem;
+      font-weight: 400;
+      opacity: .8;
+      margin-top: 2px;
+    }
+    .section-body { padding: 24px; }
+
+    /* ──────────────────────────────────────────
+       Bilingual Block (KO on top, JA below)
+    ────────────────────────────────────────── */
+    .bilingual-block {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      background: var(--ko-bg);
+      border-left: 4px solid var(--ko-color);
+    }
+    .bilingual-block .ja-sub {
+      display: block;
+      font-size: 0.87em;
+      color: var(--ja-color);
+      margin-top: 3px;
+      line-height: 1.55;
+    }
+
+    /* ──────────────────────────────────────────
+       University Cards
+    ────────────────────────────────────────── */
+    .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .uni-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,.06);
+      transition: box-shadow .2s;
+    }
+    .uni-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.12); }
+    .uni-card-header {
+      padding: 14px 18px 10px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .uni-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .uni-card-header h3 { font-size: 1rem; color: var(--primary); margin-bottom: 2px; }
+    .uni-card-header .loc { font-size: .8rem; color: var(--muted); }
+    .uni-card-body { padding: 14px 18px; }
+    .uni-card-body ul { padding-left: 16px; font-size: .88rem; line-height: 1.7; }
+    .uni-card-body ul li { margin-bottom: 3px; }
+
+    .score-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .score-badge {
+      font-size: .78rem;
+      padding: 3px 10px;
+      border-radius: 14px;
+      font-weight: 600;
+    }
+    .score-badge.toefl { background: #e3f2fd; color: #0d47a1; }
+    .score-badge.jlpt  { background: #fce4ec; color: #880e4f; }
+    .score-badge.gpa   { background: #e8f5e9; color: #1b5e20; }
+    .score-badge.warn  { background: #fff3e0; color: #e65100; }
+
+    .uni-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: .8rem;
+      color: var(--secondary);
+      text-decoration: none;
+      border: 1px solid var(--secondary);
+      border-radius: 5px;
+      padding: 3px 10px;
+    }
+    .uni-link:hover { background: var(--secondary); color: #fff; }
+
+    /* ──────────────────────────────────────────
+       Tables
+    ────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .88rem;
+    }
+    thead tr { background: var(--primary); color: #fff; }
+    thead th { padding: 10px 14px; text-align: left; }
+    tbody tr:nth-child(even) { background: #f4f7fb; }
+    tbody tr:hover { background: #e8eef7; }
+    tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .highlight-row td { font-weight: 600; color: var(--accent2); }
+    td .note { font-size: .78rem; color: var(--muted); }
+
+    /* ──────────────────────────────────────────
+       Steps
+    ────────────────────────────────────────── */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 18px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+    .step-num {
+      counter-increment: step;
+      background: var(--secondary);
+      color: #fff;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content h4 { font-size: 1rem; color: var(--primary); margin-bottom: 6px; }
+    .step-content p, .step-content ul { font-size: .9rem; color: var(--text); }
+    .step-content ul { padding-left: 18px; }
+    .step-content li { margin-bottom: 4px; }
+
+    /* ──────────────────────────────────────────
+       Email Template Box
+    ────────────────────────────────────────── */
+    .email-box {
+      background: #1e2a3a;
+      color: #e0e8f0;
+      border-radius: 8px;
+      padding: 20px 22px;
+      font-family: 'Courier New', monospace;
+      font-size: .82rem;
+      line-height: 1.7;
+      margin: 14px 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .email-box .comment { color: #7ec8a0; }
+    .email-box .field   { color: #f9a825; font-style: italic; }
+
+    /* ──────────────────────────────────────────
+       Scholarship Cards
+    ────────────────────────────────────────── */
+    .schol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .schol-card {
+      border-radius: 8px;
+      padding: 18px;
+      border: 1px solid var(--border);
+    }
+    .schol-card.main  { border-top: 4px solid var(--accent); }
+    .schol-card.sub   { border-top: 4px solid var(--secondary); }
+    .schol-card h4    { font-size: .95rem; margin-bottom: 10px; color: var(--primary); }
+    .schol-card .amount {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .schol-card ul { padding-left: 16px; font-size: .85rem; }
+    .schol-card li { margin-bottom: 4px; }
+
+    /* ──────────────────────────────────────────
+       Timeline
+    ────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px; top: 6px; bottom: 6px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--secondary), var(--accent));
+      border-radius: 3px;
+    }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -22px; top: 7px;
+      width: 12px; height: 12px;
+      background: var(--secondary);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--secondary);
+    }
+    .tl-date {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      margin-bottom: 4px;
+    }
+    .tl-content { font-size: .9rem; }
+    .tl-content strong { color: var(--primary); }
+    .tl-note { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ──────────────────────────────────────────
+       Checklist
+    ────────────────────────────────────────── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 8px 10px 8px 36px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: .9rem;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 10px;
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+
+    /* ──────────────────────────────────────────
+       Tip / Info Boxes
+    ────────────────────────────────────────── */
+    .tip {
+      background: var(--tip-bg);
+      border-left: 4px solid var(--tip-border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: .88rem;
+    }
+    .tip strong { color: #1b5e20; }
+    .warn-box {
+      background: var(--warn-bg);
+      border-left: 4px solid var(--warn-border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: .88rem;
+    }
+
+    /* ──────────────────────────────────────────
+       Priority Table (conclusion)
+    ────────────────────────────────────────── */
+    .priority-row td:first-child { font-size: 1.2rem; text-align: center; }
+    .priority-row.p1 td { background: #fff8e1; font-weight: 600; }
+    .priority-row.p2 td { background: #f3e5f5; }
+    .priority-row.p3 td { background: #e8f5e9; }
+
+    /* ──────────────────────────────────────────
+       Footer
+    ────────────────────────────────────────── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,.75);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: .82rem;
+      line-height: 1.8;
+    }
+    footer a { color: rgba(255,255,255,.9); }
+
+    /* ──────────────────────────────────────────
+       Responsive
+    ────────────────────────────────────────── */
+    @media(max-width:640px) {
+      .hero h1 { font-size: 1.4rem; }
+      .uni-grid, .schol-grid { grid-template-columns: 1fr; }
+      .step { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<div class="hero">
+  <div class="badge">2026.05 기준 검색·확인 완료 | 2026年5月時点 調査済み</div>
+  <h1>🎓 일본 대학원 생물계열 수험 가이드<br>日本大学院 生物系 受験ガイド</h1>
+  <h2>한국 생물계열 학부 졸업 예정자를 위한 한일 이중언어 완전 공략<br>
+  韓国 生物系学部 卒業予定者のための韓日バイリンガル完全攻略</h2>
+  <div class="subtitle">⚠ 입시 정보는 매년 변경됩니다. 각 대학 공식 홈페이지에서 최신 모집요강을 반드시 재확인하세요.<br>
+  入試情報は毎年変更されます。各大学公式HPにて最新の募集要項を必ずご確認ください。</div>
+</div>
+
+<!-- ============================================================
+     CONTAINER
+============================================================ -->
+<div class="container">
+
+  <div class="notice">
+    <strong>⚠ 공지 / 注意</strong>：아래 정보는 2026년 5월 기준 공개 정보를 검색·확인하여 수록하였습니다.
+    합격을 보장하거나 법적 효력이 없으며, 실제 출원 전 반드시 각 대학 공식 홈페이지에서 최신 모집요강(募集要項)을 재확인하십시오.<br>
+    以下の情報は2026年5月時点の公開情報に基づきます。合格保証・法的効力はなく、正式出願前に必ず各大学公式HPにて最新募集要項をご確認ください。
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>📋 목차 / 目次</h3>
+    <ol>
+      <li><a href="#ch1">일본 대학원 제도 기초</a></li>
+      <li><a href="#ch2">강점 대학 13개교 상세</a></li>
+      <li><a href="#ch3">어학 요건 비교표</a></li>
+      <li><a href="#ch4">지원 절차 완전 가이드</a></li>
+      <li><a href="#ch5">교수 컨택 이메일 예문</a></li>
+      <li><a href="#ch6">장학금 정보</a></li>
+      <li><a href="#ch7">비용 시뮬레이션</a></li>
+      <li><a href="#ch8">수험 타임라인</a></li>
+      <li><a href="#ch9">한국 학부 출신 지원자 특이사항</a></li>
+      <li><a href="#ch10">실수 방지 체크리스트</a></li>
+    </ol>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH1: 제도 기초 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch1">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>일본 대학원 제도 기초 이해
+        <span class="ja">日本大学院制度の基礎理解</span>
+      </h2>
+    </div>
+    <div class="section-body">
+
+      <div class="bilingual-block">
+        <p>일본 대학원 진학 루트는 크게 두 가지입니다.<br>
+          <small style="color:var(--ja-color); font-size:.9em;">日本の大学院進学ルートは主に2つあります。</small>
+        </p>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr>
+                <th>루트 / ルート</th>
+                <th>설명 / 説明</th>
+                <th>특징 / 特徴</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>직접 입학 (修士課程)</strong><br><small style="color:var(--ja-color);">直接入学（修士課程）</small></td>
+                <td>학부 졸업 후 바로 대학원 입시 응시<br><small style="color:var(--ja-color);">学部卒業後、そのまま大学院入試を受験</small></td>
+                <td>어학 실력 충분할 경우 권장<br><small style="color:var(--ja-color);">語学力が十分な場合に推奨</small></td>
+              </tr>
+              <tr>
+                <td><strong>연구생 경유 입학</strong><br><small style="color:var(--ja-color);">研究生経由入学</small></td>
+                <td>먼저 연구생(研究生)으로 입학 → 이후 석사 입시<br><small style="color:var(--ja-color);">まず研究生として入学→その後修士入試</small></td>
+                <td>어학 준비 부족 시 일반적 경로<br><small style="color:var(--ja-color);">語学準備が不足している場合の一般的ルート</small></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip" style="margin-top:12px;">
+          <strong>💡 연구생(研究生)이란?</strong><br>
+          정식 학위과정이 아닌 청강·예비 과정 (6개월~2년). 학점 이수 불가, 지도교수의 실험실에서 연구만 수행.
+          이후 정식 대학원(修士課程) 입시에 응시하여 합격하면 학위과정 시작.
+          <strong>한국 학부 졸업 후 일본어가 부족한 경우 가장 많이 선택하는 경로입니다.</strong><br>
+          <small style="color:var(--ja-color);">💡 研究生とは？正式な学位課程ではなく聴講・準備課程（6ヶ月〜2年）。単位取得不可、指導教員のラボで研究のみ。その後、修士課程入試に合格すれば学位課程へ進学。<strong>韓国学部卒業後で日本語が不足している場合に最も多く選ばれるルートです。</strong></small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH2: 대학 13개교 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch2">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>생물계열 강점 대학 13개교 상세 정보
+        <span class="ja">生物系強み大学13校 詳細情報</span>
+      </h2>
+    </div>
+    <div class="section-body">
+
+      <div class="uni-grid">
+
+        <!-- ① 도쿄대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🏯</div>
+            <div>
+              <h3>① 東京大学 / 도쿄대학교</h3>
+              <div class="loc">📍 도쿄 / 東京</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>農学生命科学研究科 — 응용생명화학·생물소재</li>
+              <li>理学系研究科 — 생물화학·분자생물학</li>
+              <li>新領域創成科学研究科 — 先端生命科学</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 85+ 권장</span>
+              <span class="score-badge jlpt">JLPT N2 (N1 권장)</span>
+            </div>
+            <div class="warn-box" style="margin-top:10px; font-size:.8rem;">
+              ⚠ 2026년~: 農学生命科学研究科 외국인 특별선발 폐지 → 일반입시 통일 (현재 적용 중). 공식 홈페이지 재확인 필수.<br>
+              <small style="color:var(--ja-color);">2026年〜：農学生命科学研究科の外国人特別選抜廃止→一般入試に統一（現在適用中）。公式HP再確認必須。</small>
+            </div>
+            <a href="https://www.a.u-tokyo.ac.jp/english/applicants/g_rcourses.html" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ② 교토대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">⛩️</div>
+            <div>
+              <h3>② 京都大学 / 교토대학교</h3>
+              <div class="loc">📍 교토 / 京都</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命科学研究科 — 統合生命科学, 분자·세포생물 강세</li>
+              <li>農学研究科 — 응용생물과학·식품생물과학</li>
+              <li>理学研究科 — 생물과학, 진화·생태 포함</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 80+ (90 권장)</span>
+              <span class="score-badge jlpt">JLPT N2 (N1 권장)</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              2025년~: 理学研究科 교내 영어시험 폐지 → 외부 TOEFL/IELTS 점수 대체 (2026년 현재 적용 중)<br>
+              <small style="color:var(--ja-color);">2025年〜：理学研究科の学内英語試験廃止→外部TOEFL/IELTSスコアに代替（2026年現在適用中）</small>
+            </div>
+            <a href="https://www.lif.kyoto-u.ac.jp" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ③ 오사카대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🔬</div>
+            <div>
+              <h3>③ 大阪大学 / 오사카대학교</h3>
+              <div class="loc">📍 오사카 / 大阪</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命機能研究科 (FBS) — 석박 5년 일관제, 나노생체·뇌신경</li>
+              <li>理学研究科 — 생물과학 (기초생물)</li>
+              <li>工学研究科 — 生命先端工学 (응용·공학)</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 57+ (FBS 최저)</span>
+              <span class="score-badge warn">일본어 기준 없음</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              FBS: 7분 발표 + 13분 Q&amp;A 온라인 구두시험. 세계 수준 설비 보유 (저온전자현미경 등)<br>
+              <small style="color:var(--ja-color);">FBS：7分発表＋13分Q&amp;Aオンライン口頭試問。世界水準の設備保有（クライオ電子顕微鏡など）</small>
+            </div>
+            <a href="https://www.fbs.osaka-u.ac.jp/ja/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ④ 도쿄과학대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">⚗️</div>
+            <div>
+              <h3>④ 東京科学大学 (구 東京工業大学)</h3>
+              <div class="loc">📍 도쿄 / 東京 ※2024년 통합 개명</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命理工学院 — バイオサイエンス·バイオエンジニアリング</li>
+              <li>공학 기반 생명과학, 이공계 명문</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 90+ 권장</span>
+              <span class="score-badge jlpt">JLPT N2 권장</span>
+            </div>
+            <div class="warn-box" style="margin-top:8px; font-size:.8rem;">
+              ⚠ 2024년 도쿄의과치과대학과 통합 → 東京科学大学. 입시 정보 반드시 신규 공식 사이트 확인.<br>
+              <small style="color:var(--ja-color);">2024年 東京医科歯科大学と統合→東京科学大学。入試情報は必ず新公式サイトにて確認。</small>
+            </div>
+            <a href="https://www.isct.ac.jp" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑤ 홋카이도대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🌿</div>
+            <div>
+              <h3>⑤ 北海道大学 / 홋카이도대학교</h3>
+              <div class="loc">📍 삿포로 / 札幌 (생활비 저렴)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命科学院 生物工学専攻 ← <strong>한국 생물공학과 출신 매칭 우수</strong></li>
+              <li>農学院 — 応用生命科学·발효·식품</li>
+              <li>理学院 — 생물과학 (기초)</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 80+ (85 권장)</span>
+              <span class="score-badge jlpt">JLPT N2</span>
+              <span class="score-badge gpa">GPA 3.0+ (3.5 권장)</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              연 2회 입학 (4월·10월). 생활비 도쿄 대비 30~40% 절감 가능.<br>
+              <small style="color:var(--ja-color);">年2回入学（4月・10月）。生活費は東京比30〜40%節減可能。</small>
+            </div>
+            <a href="https://www.life.hokudai.ac.jp/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑥ 나고야대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🏅</div>
+            <div>
+              <h3>⑥ 名古屋大学 / 나고야대학교</h3>
+              <div class="loc">📍 나고야 / 名古屋 (노벨상 6명 배출)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>理学研究科 生命理学専攻 — 분자생물·세포생물</li>
+              <li>工学研究科 化学生命工学 — 생물화학공학</li>
+              <li>農学国際科学研究科 — 국제 공동연구 강점</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 79+ / IELTS 6.0+</span>
+              <span class="score-badge jlpt">JLPT N2 권장</span>
+            </div>
+            <a href="https://www.sci.nagoya-u.ac.jp/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑦ 규슈대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🌸</div>
+            <div>
+              <h3>⑦ 九州大学 / 규슈대학교</h3>
+              <div class="loc">📍 후쿠오카 / 福岡 (한국과 가깝다)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生物資源環境科学府 — 농학·생태·분자생물</li>
+              <li>システム生命科学府 — 게놈·유전학·생명정보</li>
+              <li>理学府 生物学専攻 — 기초생물학</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 85+</span>
+              <span class="score-badge jlpt">JLPT N2</span>
+            </div>
+            <div class="warn-box" style="margin-top:8px; font-size:.8rem;">
+              ⚠ TOEIC IP·TOEIC Bridge <strong>불가</strong>. 공개시험 공식 스코어만 인정.<br>
+              2027년 4월 입학 夏入試: 출원 2026년 6월5일~12일(必着) / 시험일 2026년 7월18일<br>
+              2027년 4월 입학 冬入試: 출원 2026년 11~12월경 (공식 홈페이지 재확인 필수)<br>
+              <small style="color:var(--ja-color);">TOEIC IP・TOEIC Bridge<strong>不可</strong>。公開試験公式スコアのみ認定。夏入試：2026年6月5〜12日（必着）/ 試験日7月18日。冬入試：2026年11〜12月頃（公式HP再確認要）</small>
+            </div>
+            <div class="tip" style="margin-top:6px; font-size:.8rem;">
+              일부 연구과: 영어만으로 완결되는 국제코스 존재 (일본어 불요)<br>
+              <small style="color:var(--ja-color);">一部研究科：英語のみで完結する国際コース有（日本語不要）</small>
+            </div>
+            <a href="https://www.isc.kyushu-u.ac.jp/invitation/admission/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑧ 쓰쿠바대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🌱</div>
+            <div>
+              <h3>⑧ 筑波大学 / 쓰쿠바대학교</h3>
+              <div class="loc">📍 쓰쿠바 / 筑波 (생활비 저렴, 국제적 분위기)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命環境科学研究科 — 생물학·농학·환경과학</li>
+              <li>「外国学校経験者特別入試」 실시 중 (외국 학부 출신 전용 특별전형)</li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 61+ (70-80 권장)</span>
+              <span class="score-badge warn">TOEIC 600+ / IELTS 5.0+</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              시험: 소논문(90~120분) + 면접. EJU 각 과목 평균 이상 필요.<br>
+              <small style="color:var(--ja-color);">試験：小論文(90〜120分)+面接。EJU各科目平均点以上必要。外国学校経験者特別入試あり。</small>
+            </div>
+            <a href="https://www.tsukuba.ac.jp/admission/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑨ 도호쿠대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🌾</div>
+            <div>
+              <h3>⑨ 東北大学 / 도호쿠대학교</h3>
+              <div class="loc">📍 센다이 / 仙台 (생활비 저렴, 도호쿠 거점)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>生命科学研究科 — 세포·분자생물학, 진화생물학, 신경과학<br>
+                <small style="color:var(--ja-color);">生命科学研究科 — 細胞·分子生物学、進化生物学、神経科学</small>
+              </li>
+              <li>農学研究科 — 응용생물화학, 자원생물과학<br>
+                <small style="color:var(--ja-color);">農学研究科 — 応用生物化学、資源生物科学</small>
+              </li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 79+ (80 권장)</span>
+              <span class="score-badge jlpt">JLPT N2</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              농학연구과는 JLPT N2 필수. 生命科学研究科는 영어 중심 수업 가능.<br>
+              <small style="color:var(--ja-color);">農学研究科はJLPT N2必須。生命科学研究科は英語中心授業可能。센다이는 도쿄 신칸센 약 90분。</small>
+            </div>
+            <a href="https://www.tohoku.ac.jp/japanese/graduate/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑩ 고베대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">⚓</div>
+            <div>
+              <h3>⑩ 神戸大学 / 고베대학교</h3>
+              <div class="loc">📍 고베 / 神戸 (간사이 권역, 생활비 적당)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>理学研究科 生物学専攻 — 생화학, 세포생물학, 발생학<br>
+                <small style="color:var(--ja-color);">理学研究科 生物学専攻 — 生化学、細胞生物学、発生学</small>
+              </li>
+              <li>農学研究科 — 식품생명과학, 환경생물학<br>
+                <small style="color:var(--ja-color);">農学研究科 — 食品生命科学、環境生物学</small>
+              </li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 79+</span>
+              <span class="score-badge warn">IELTS 6.0 대체 가능</span>
+              <span class="score-badge jlpt">JLPT N2</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              오사카·교토 접근성 우수 (전철 30분 이내). 연구과에 따라 IELTS 6.0으로 TOEFL 대체 가능.<br>
+              <small style="color:var(--ja-color);">大阪・京都へのアクセス良好(電車30分以内)。研究科によりIELTS 6.0でTOEFL代替可。</small>
+            </div>
+            <a href="https://www.kobe-u.ac.jp/research_at_kobe/graduates/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑪ 히로시마대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🌺</div>
+            <div>
+              <h3>⑪ 広島大学 / 히로시마대학교</h3>
+              <div class="loc">📍 히가시히로시마 / 東広島 (캠퍼스 자연환경 우수)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>統合生命科学研究科 — 동식물생명과학, 게놈편집, 미생물과학<br>
+                <small style="color:var(--ja-color);">統合生命科学研究科 — 動植物生命科学、ゲノム編集、微生物科学</small>
+              </li>
+              <li>農業生命科学プログラム — 식물육종, 생물환경학<br>
+                <small style="color:var(--ja-color);">農業生命科学プログラム — 植物育種、生物環境学</small>
+              </li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 61+ (79 권장)</span>
+              <span class="score-badge jlpt">JLPT N1 권장</span>
+            </div>
+            <div class="warn-box" style="margin-top:8px; font-size:.8rem;">
+              ⚠ 수업 대부분 일본어 진행 — N1 수준 권장. 영어 강의 비율은 연구실마다 다름.<br>
+              <small style="color:var(--ja-color);">⚠ 授業は大部分日本語で進行 — N1レベル推奨。英語講義の割合は研究室ごとに異なる。</small>
+            </div>
+            <a href="https://www.hiroshima-u.ac.jp/nyushi/grad" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑫ 게이오대 -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🏛️</div>
+            <div>
+              <h3>⑫ 慶應義塾大学 / 게이오기주쿠대학교</h3>
+              <div class="loc">📍 요코하마 / 横浜 (사립, 이공계 캠퍼스)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>理工学研究科 生命情報学専攻 — 바이오인포매틱스, 구조생물학, 신약개발<br>
+                <small style="color:var(--ja-color);">理工学研究科 生命情報学専攻 — バイオインフォマティクス、構造生物学、創薬</small>
+              </li>
+              <li>영어 강의 비율 높음, 산학연계 연구 활발<br>
+                <small style="color:var(--ja-color);">英語講義の比率高く、産学連携研究が活発</small>
+              </li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 80+</span>
+              <span class="score-badge jlpt">JLPT N2</span>
+              <span class="score-badge warn">사립 수업료 약 130만 JPY/年</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              사립 대학으로 국립대 대비 수업료 약 2.4배. 단, 장학금(MEXT·게이오 자체 장학금) 확보 시 부담 경감 가능.<br>
+              <small style="color:var(--ja-color);">私立大学のため国立大比較で授業料約2.4倍。ただしMEXT・慶應独自奨学金確保で負担軽減可能。英語コース有。</small>
+            </div>
+            <a href="https://www.st.keio.ac.jp/admissions/graduate/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+        <!-- ⑬ NAIST -->
+        <div class="uni-card">
+          <div class="uni-card-header">
+            <div class="uni-icon">🔬</div>
+            <div>
+              <h3>⑬ 奈良先端科学技術大学院大学 (NAIST)</h3>
+              <div class="loc">📍 이코마·나라 / 生駒·奈良 (소규모 특화 연구자 양성)</div>
+            </div>
+          </div>
+          <div class="uni-card-body">
+            <ul>
+              <li>バイオサイエンス領域 — 세포생물학, 분자생물학, 신경과학, 식물과학<br>
+                <small style="color:var(--ja-color);">バイオサイエンス領域 — 細胞生物学、分子生物学、神経科学、植物科学</small>
+              </li>
+              <li>대학원 단과대학 — 정원 소규모, 지도교수 밀착 지도<br>
+                <small style="color:var(--ja-color);">大学院大学 — 定員少数制、指導教員による密着指導</small>
+              </li>
+            </ul>
+            <div class="score-row">
+              <span class="score-badge toefl">TOEFL iBT 80+ / IELTS 6.5+</span>
+              <span class="score-badge warn" style="background:#e8f4f0;color:#1b4d3e;">일본어 불요 / 日本語不要</span>
+            </div>
+            <div class="tip" style="margin-top:8px; font-size:.8rem;">
+              <strong>일본어 능력 불필요</strong> — 영어만으로 입학·수업·연구 전부 가능. 경쟁률이 상대적으로 낮고 교수 1인당 학생 수가 적어 집중 지도를 받기 쉬움.<br>
+              <small style="color:var(--ja-color);">日本語能力不要 — 英語のみで入学・授業・研究すべて対応可。競争倍率が比較的低く、教員1人あたり学生数が少ないため密着指導を受けやすい。大阪より電車約30分。</small>
+            </div>
+            <a href="https://www.naist.jp/admissions/" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+          </div>
+        </div>
+
+      </div><!-- /uni-grid -->
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH3: 어학 요건 비교표 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch3">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>어학 요건 종합 비교표
+        <span class="ja">語学要件 総合比較表</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>대학 / 大学</th>
+              <th>TOEFL iBT 최저</th>
+              <th>TOEFL iBT 권장</th>
+              <th>JLPT 최저</th>
+              <th>JLPT 권장</th>
+              <th>비고</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>東京大学</strong></td>
+              <td>85점</td>
+              <td>90점+</td>
+              <td>N2</td>
+              <td>N1</td>
+              <td><span class="note">농학: 교내시험 또는 TOEFL 환산</span></td>
+            </tr>
+            <tr>
+              <td><strong>京都大学</strong></td>
+              <td>80점</td>
+              <td>90점+</td>
+              <td>N2</td>
+              <td>N1</td>
+              <td><span class="note">이학: 교내영어시험 → 외부점수 대체</span></td>
+            </tr>
+            <tr>
+              <td><strong>大阪大学 (FBS)</strong></td>
+              <td><strong style="color:#c0392b;">57점</strong></td>
+              <td>80점+</td>
+              <td>규정 없음</td>
+              <td>N2</td>
+              <td><span class="note">FBS 기준, 구두시험 있음</span></td>
+            </tr>
+            <tr>
+              <td><strong>東京科学大学</strong></td>
+              <td>90점</td>
+              <td>95점+</td>
+              <td>N2 권장</td>
+              <td>N1</td>
+              <td><span class="note">구 도쿄공업대, 2024년 통합</span></td>
+            </tr>
+            <tr class="highlight-row">
+              <td><strong>北海道大学 ★</strong></td>
+              <td>80점</td>
+              <td>85점+</td>
+              <td>N2</td>
+              <td>N1</td>
+              <td><span class="note">生物工学専攻 직결, 생활비 저렴</span></td>
+            </tr>
+            <tr>
+              <td><strong>名古屋大学</strong></td>
+              <td>79점</td>
+              <td>85점+</td>
+              <td>N2</td>
+              <td>N1</td>
+              <td><span class="note">IELTS 6.0 대체 가능</span></td>
+            </tr>
+            <tr>
+              <td><strong>九州大学</strong></td>
+              <td>85점</td>
+              <td>90점+</td>
+              <td>N2</td>
+              <td>N1</td>
+              <td><span class="note">TOEIC IP 불가, 공개시험만</span></td>
+            </tr>
+            <tr>
+              <td><strong>筑波大学</strong></td>
+              <td><strong style="color:#1b5e20;">61점</strong></td>
+              <td>70~80점+</td>
+              <td>EJU 평균+</td>
+              <td>N2</td>
+              <td><span class="note">TOEIC 600 / IELTS 5.0 대체</span></td>
+            </tr>
+            <tr>
+              <td><strong>東北大学</strong></td>
+              <td><strong style="color:#1b5e20;">79점</strong></td>
+              <td>80점+</td>
+              <td>N2</td>
+              <td>N2</td>
+              <td><span class="note">農学研究科: N2 필수 / 農学研究科: N2必須</span></td>
+            </tr>
+            <tr>
+              <td><strong>神戸大学</strong></td>
+              <td><strong style="color:#1b5e20;">79점</strong></td>
+              <td>79점+</td>
+              <td>N2</td>
+              <td>N2</td>
+              <td><span class="note">IELTS 6.0 대체 가능 / IELTS 6.0代替可</span></td>
+            </tr>
+            <tr>
+              <td><strong>広島大学</strong></td>
+              <td><strong style="color:#1b5e20;">61점</strong></td>
+              <td>79점+</td>
+              <td>N1</td>
+              <td>N1</td>
+              <td><span class="note">일본어 수업 중심, N1 권장 / 日本語授業中心、N1推奨</span></td>
+            </tr>
+            <tr>
+              <td><strong>慶應義塾大学</strong></td>
+              <td>80점+</td>
+              <td>85점+</td>
+              <td>N2</td>
+              <td>N2</td>
+              <td><span class="note">사립·영어코스 有 / 私立・英語コース有</span></td>
+            </tr>
+            <tr>
+              <td><strong>NAIST<br><small>(奈良先端大)</small></strong></td>
+              <td><strong style="color:#1b5e20;">80점</strong></td>
+              <td>80점+</td>
+              <td colspan="2" style="text-align:center; color:#1b4d3e;"><strong>불요 / 不要</strong></td>
+              <td><span class="note">영어 연구 환경 / 英語研究環境、日本語不要</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip">
+        <strong>💡 한국 생물계열 학부 졸업 예정자 전략 / 韓国生物系学部卒業予定者 戦略:</strong><br>
+        현재 어학 수준에 따라 <strong>TOEFL iBT 80~90점 + JLPT N2</strong> 확보를 1차 목표로,
+        <strong>N1 취득</strong>을 최종 목표로 설정하는 것을 권장합니다. 스코어 유효기간은 <strong>출원일 기준 2년 이내</strong>임에 주의하세요.<br>
+        <small style="color:var(--ja-color);">現在の語学レベルに応じて<strong>TOEFL iBT 80〜90点＋JLPT N2</strong>確保を第1目標に、<strong>N1取得</strong>を最終目標として設定することを推奨します。スコアの有効期限は<strong>出願日基準2年以内</strong>に注意。日本語不要のNAISTも視野に入れると選択肢が広がります。</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH4: 지원 절차 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch4">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>지원 절차 완전 가이드 (교수 컨택 → 내락 → 출원)
+        <span class="ja">出願手続き完全ガイド（教員コンタクト→内諾→出願）</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-num">0</div>
+          <div class="step-content">
+            <h4>연구 분야·희망 교수 탐색 / 研究分野・希望教員の探索 <small style="color:var(--muted);">(입학 10~12개월 전 / 入学10〜12ヶ月前)</small></h4>
+            <ul>
+              <li>자신의 연구 관심 분야 명확히 정의 (분자생물, 유전자편집, 발효공학, 합성생물학 등)<br><small style="color:var(--ja-color);">自分の研究関心分野を明確化（分子生物、遺伝子編集、発酵工学、合成生物学など）</small></li>
+              <li>각 대학 연구과 홈페이지에서 교수진 목록 확인 / 各大学研究科HPで教員一覧確認</li>
+              <li><strong>Google Scholar / ResearchGate / PubMed</strong>에서 최근 3~5년 논문 2~3편 정독</li>
+              <li>연구 방향이 맞는 교수 <strong>3~5명</strong> 후보 리스트 작성 / 方向性が合う教員3〜5名のリストを作成</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>교수 컨택 이메일 발송 / 教員コンタクトメール発送 <small style="color:var(--muted);">(입학 7~10개월 전 / 入学7〜10ヶ月前)</small></h4>
+            <ul>
+              <li>이메일은 <strong>반드시 일본어</strong>로 작성 (영어 병기 가능) / メールは<strong>必ず日本語</strong>で作成（英語併記可）</li>
+              <li>교수 연구를 구체적으로 언급 (논문 제목 포함) — 복붙 금지! / 教員の研究を具体的に言及（論文タイトル含む）— コピペ厳禁！</li>
+              <li>첨부: 연구계획서 초안, 이력서, 영문 성적증명서 / 添付：研究計画書草稿、履歴書、英文成績証明書</li>
+              <li>복수 교수 동시 컨택 가능 (최종 내락은 1명만 수락) / 複数教員への同時コンタクト可（最終内諾は1名のみ受諾）</li>
+              <li>2주 내 답장 없으면 1회 리마인드 메일 발송 / 2週間以内に返信なければ1度リマインドメール送信</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>교수 면담 (面談) 준비 / 教員面談（面接）準備</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>예상 질문</th><th>준비 방향</th></tr></thead>
+                <tbody>
+                  <tr><td>왜 이 연구 주제를 선택했는가?</td><td>학부 연구와의 연속성 강조</td></tr>
+                  <tr><td>선행 연구는 무엇을 읽었는가?</td><td>교수 논문 2~3편 반드시 정독 후 답변</td></tr>
+                  <tr><td>연구 방법론은 무엇인가?</td><td>구체적 실험 기법 (PCR, CRISPR 등) 언급</td></tr>
+                  <tr><td>졸업 후 진로 계획은?</td><td>아카데미아 vs 산업계 명확히</td></tr>
+                  <tr><td>일본어/영어 능력은?</td><td>현재 수준 솔직하게 + 향상 계획 언급</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>연구계획서 (研究計画書) 작성</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>항목</th><th>내용</th></tr></thead>
+                <tbody>
+                  <tr><td>분량</td><td>이과계열: A4 2~3장 (일본어 원칙, 영어 병기 가능)</td></tr>
+                  <tr><td>구성</td><td>①연구 배경 → ②연구 목적 → ③선행 연구 검토 → ④연구 방법 → ⑤기대 성과</td></tr>
+                  <tr><td>핵심</td><td>지도 교수의 연구와의 연결성 반드시 명시</td></tr>
+                  <tr><td>금기</td><td>표절 절대 금지, 참고문헌 명시</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>공식 출원 서류 제출 / 公式出願書類提出</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>서류</th><th>비고</th></tr></thead>
+                <tbody>
+                  <tr><td>졸업(예정)증명서</td><td>영문 또는 일문</td></tr>
+                  <tr><td>성적증명서</td><td>영문 또는 일문, GPA 환산표 첨부 권장</td></tr>
+                  <tr><td>연구계획서</td><td>일본어 원칙</td></tr>
+                  <tr><td>추천서</td><td>지도교수 등 1~2통</td></tr>
+                  <tr><td>TOEFL/IELTS 공식 스코어</td><td>시험기관에서 대학으로 직접 송부 필요한 경우 있음</td></tr>
+                  <tr><td>JLPT 합격증</td><td></td></tr>
+                  <tr><td>여권 사본</td><td></td></tr>
+                  <tr><td>수험료</td><td>국공립: <strong>17,000엔</strong> / 사립: 30,000엔 내외</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /steps -->
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH5: 이메일 예문 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch5">
+    <div class="section-header">
+      <div class="num">5</div>
+      <h2>교수 컨택 이메일 예문
+        <span class="ja">教員コンタクトメール 例文</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="bilingual-block">
+        <ul style="font-size:.9rem; padding-left:18px; margin-top:4px;">
+          <li>제목(件名)은 짧고 명확하게<br><small style="color:var(--ja-color);">件名は短く明確に</small></li>
+          <li>교수 연구 논문 제목을 <strong>구체적으로</strong> 언급<br><small style="color:var(--ja-color);">教員の研究論文タイトルを<strong>具体的に</strong>記載</small></li>
+          <li>자신의 학부 연구와의 연결을 명시<br><small style="color:var(--ja-color);">自身の学部研究との関連性を明示</small></li>
+          <li>연구계획서, 이력서, 성적증명서 첨부<br><small style="color:var(--ja-color);">研究計画書・履歴書・成績証明書を添付</small></li>
+        </ul>
+      </div>
+      <div class="email-box"><span class="comment">// 件名（제목）</span>
+研究生受け入れのご相談について / ○○大学大学院 研究生志望
+
+<span class="comment">// 本文（본문）</span>
+○○大学大学院 ○○研究科
+○○先生
+
+突然のご連絡、失礼いたします。
+私は韓国の○○大学 生物工学科を卒業予定の
+<span class="field">○○○（홍길동）</span>と申します。
+
+先生の「<span class="field">（예: バイオフィルム制御機構の解明）</span>」に関する
+ご研究に深い関心を持ち、ご連絡差し上げました。
+
+先生の論文「<span class="field">（논문 제목）</span>」を拝読し、
+特に「<span class="field">（인상적이었던 내용: 예, 특정 효소의 기능 해석 부분）</span>」という
+点に大変感銘を受けました。
+
+私の学部での研究テーマは
+「<span class="field">（예: 대장균 발효 최적화를 통한 재조합 단백질 생산）</span>」であり、
+先生のご研究と密接に関連していると考えております。
+
+つきましては、研究生としてご受け入れいただけないでしょうか。
+研究計画書・履歴書・成績証明書を添付いたしましたので、
+ご一読いただけますと幸いです。
+
+ご多忙のところ誠に恐れ入りますが、
+何卒ご検討のほどよろしくお願い申し上げます。
+
+<span class="field">○○○（성명 로마자 표기）</span>
+Email: <span class="field">example@university.ac.kr</span>
+所属: ○○大学 ○○学科 4年
+JLPT: <span class="field">N○</span>　TOEFL iBT: <span class="field">○○</span>点</div>
+
+      <div class="warn-box">
+        ⚠ <strong>절대 금지</strong>: 같은 내용 복붙 발송. 교수마다 맞춤형으로 반드시 수정하세요.<br>
+        교수에게 내락(「受け入れます」「内諾します」)을 받으면 공식 출원을 진행합니다.<br>
+        <small style="color:var(--ja-color);">同じ文面のコピペ送信は絶対禁止。教員ごとに必ずカスタマイズすること。内諾（「受け入れます」「内諾します」）取得後に公式出願へ進む。</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH6: 장학금 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch6">
+    <div class="section-header">
+      <div class="num">6</div>
+      <h2>장학금 정보
+        <span class="ja">奨学金情報</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="schol-grid">
+
+        <div class="schol-card main">
+          <h4>🏅 MEXT (문부과학성) 장학금 / 文部科学省奨学金</h4>
+          <div class="amount">학비 전액 면제 + 월 144,000~147,000엔 (석사)<br><small style="color:#666;">授業料全額免除 ＋ 月額 144,000〜147,000円（修士）</small></div>
+          <ul>
+            <li>박사: 월 145,000~242,000엔 / 博士：月145,000〜242,000円</li>
+            <li>왕복 항공권 지원 / 往復航空券支給</li>
+            <li>연령 제한: 석사 만 35세 미만 / 年齢制限：修士 満35歳未満</li>
+            <li>어학: TOEFL iBT 80+ 또는 JLPT N2+ / 語学：TOEFL iBT 80点以上またはJLPT N2以上</li>
+            <li><strong>대사관 추천 (2027년 입학 목표)</strong>: 2026년 5~6월 서류접수 → 7월 1차전형 → 11월 최종선발 예정 (주한일본대사관 공식 확인 필수)<br><small style="color:#555;">大使館推薦（2027年入学目標）：2026年5〜6月書類受付→7月第1次選考→11月最終選考（在韓日本大使館公式確認要）</small></li>
+            <li><strong>대학 추천 (2027년 입학 목표)</strong>: 2027년 3~4월 예정 (교수 내락 필수)<br><small style="color:#555;">大学推薦（2027年入学目標）：2027年3〜4月予定（教員内諾必須）</small></li>
+          </ul>
+          <div class="tip" style="margin-top:8px; font-size:.8rem;">
+            💡 대학 추천 루트는 반드시 사전에 지도 교수(내락)가 확보되어야 신청 가능.<br>
+            大学推薦ルートは事前に指導教員の内諾取得が必須条件。
+          </div>
+        </div>
+
+        <div class="schol-card sub">
+          <h4>📚 JASSO 학습장려금 / JASSO 学習奨励金</h4>
+          <div class="amount" style="color:var(--secondary);">월 48,000엔 / 月48,000円</div>
+          <ul>
+            <li>성적 우수 자비유학생 대상 / 成績優秀な自費留学生対象</li>
+            <li>별도 신청 필요 / 別途申請必要</li>
+            <li>MEXT와 병행 불가 / MEXT奨学金との併給不可</li>
+          </ul>
+        </div>
+
+        <div class="schol-card sub">
+          <h4>🎖 소니 국제 장학금 / ソニー国際奨学金</h4>
+          <div class="amount" style="color:var(--secondary);">월 80,000엔 / 月80,000円</div>
+          <ul>
+            <li>이공계 분야 매칭 필요 / 理工系分野でのマッチング必要</li>
+            <li>별도 신청 필요 / 別途申請必要</li>
+          </ul>
+        </div>
+
+      </div><!-- /schol-grid -->
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH7: 비용 시뮬레이션 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch7">
+    <div class="section-header">
+      <div class="num">7</div>
+      <h2>비용 현실적 시뮬레이션
+        <span class="ja">費用シミュレーション</span>
+      </h2>
+    </div>
+    <div class="section-body">
+
+      <h3 style="font-size:.95rem; color:var(--primary); margin-bottom:10px;">🏛 국공립 대학원 학비 (연간) / 国公立大学院 学費（年間）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>항목 / 項目</th><th>금액 / 金額</th><th>비고 / 備考</th></tr></thead>
+          <tbody>
+            <tr><td>수험료 (検定料)</td><td>17,000엔</td><td>약 15만 원 / 約15,000KRW相当</td></tr>
+            <tr><td>입학금 (入学金)</td><td>282,000엔</td><td>약 26만 원, <strong>첫 해만 납부</strong> / 初年度のみ</td></tr>
+            <tr><td>수업료 (授業料, 연간)</td><td>535,800엔</td><td>약 50만 원/년 / 年額</td></tr>
+            <tr class="highlight-row"><td><strong>1년차 총합 / 初年度合計</strong></td><td><strong>약 834,800엔</strong></td><td>약 78만 원 / 参考換算</td></tr>
+            <tr><td>2년차 이후 / 2年目以降</td><td>535,800엔/년</td><td>수업료만 / 授業料のみ</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:.95rem; color:var(--primary); margin: 20px 0 10px;">🏠 월 생활비 (도시별 비교) / 月生活費（都市別比較）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>도시 / 都市</th><th>월 생활비 예상 / 月生活費目安</th><th>해당 대학 / 該当大学</th></tr></thead>
+          <tbody>
+            <tr><td>도쿄 / 東京</td><td>10~13만 엔</td><td>東京大, 東京科学大, 慶應義塾大</td></tr>
+            <tr><td>교토·오사카 / 京都·大阪</td><td>8~11만 엔</td><td>京都大, 大阪大</td></tr>
+            <tr><td>나고야 / 名古屋</td><td>7~10만 엔</td><td>名古屋大</td></tr>
+            <tr><td>고베 / 神戸</td><td>7~9만 엔</td><td>神戸大</td></tr>
+            <tr><td>센다이 / 仙台</td><td>7~9만 엔</td><td>東北大</td></tr>
+            <tr><td>후쿠오카 / 福岡</td><td>6~9만 엔</td><td>九州大</td></tr>
+            <tr><td>히로시마 / 広島</td><td>6~8만 엔</td><td>広島大</td></tr>
+            <tr class="highlight-row"><td>삿포로 / 札幌</td><td><strong>6~8만 엔</strong></td><td>北海道大 ★ 절약 효과 최대 / 生活費最安クラス</td></tr>
+            <tr class="highlight-row"><td>쓰쿠바·나라 / 筑波·奈良</td><td><strong>6~8만 엔</strong></td><td>筑波大 ★ / NAIST ★</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip">
+        💡 <strong>MEXT 장학금 수령 시 / MEXT奨学金受給時</strong>: 학비 전액 면제 + 월 147,000엔 지원 → 실질 자비 부담 거의 없음.<br>
+        授業料全額免除＋月額147,000円支給→自己負担ほぼゼロ。<br>
+        아르바이트 주 <strong>28시간</strong> 합법 가능 (도쿄 시급 약 1,100~1,300엔) / アルバイト週28時間まで合法（東京時給約1,100〜1,300円）.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH8: 타임라인 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch8">
+    <div class="section-header">
+      <div class="num">8</div>
+      <h2>2027년 4월 입학 목표 수험 타임라인
+        <span class="ja">2027年4月入学目標 受験タイムライン</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="tip" style="margin-bottom:16px;">
+        ⏰ <strong>현재: 2026년 5월</strong> — 지금 바로 시작하면 2027년 4월 입학 가능합니다.<br>
+        <span style="color:var(--ja-color);">現在：2026年5月 — 今すぐスタートすれば2027年4月入学が狙えます。</span>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2026년 5~6월 <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:4px;font-size:.75rem;">▶ 지금!</span></div>
+          <div class="tl-content"><strong>연구 분야 확정 + 희망 교수 리스트 작성 + 논문 정독 시작</strong><br><small style="color:var(--ja-color);">研究分野の確定＋希望教員リスト作成＋論文精読スタート</small></div>
+          <div class="tl-note">Google Scholar / PubMed 활용. 관심 분야를 먼저 구체화할 것.<br><small>Google Scholar / PubMed活用。研究興味の具体化が最優先。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 5~6월 <span style="background:#c0392b;color:#fff;padding:2px 6px;border-radius:4px;font-size:.75rem;">⚠ 마감 임박</span></div>
+          <div class="tl-content"><strong>MEXT 대사관 추천 서류 접수 중 (2027년 입학 목표)</strong><br><small style="color:var(--ja-color);">MEXT大使館推薦 書類受付中（2027年入学目標）</small></div>
+          <div class="tl-note">주한일본대사관(kr.emb-japan.go.jp) 공식 안내 즉시 확인. 1차 전형: 2026년 7월경 예정.<br><small>在韓日本大使館公式サイトを即時確認。第1次選考：2026年7月頃予定。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 5~7월</div>
+          <div class="tl-content"><strong>TOEFL / JLPT 응시 또는 준비</strong><br><small style="color:var(--ja-color);">TOEFL / JLPT受験または準備</small></div>
+          <div class="tl-note">스코어 유효기간 2년 주의 (출원일 기준). TOEFL은 시험기관에서 대학으로 직접 송부 가능 여부 확인.<br><small>スコア有効期限は出願日から2年以内。TOEFLはETS経由の大学直送送付オプション確認必須。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 6월 초</div>
+          <div class="tl-content"><strong>九州大学 夏入試 출원 마감 (2027년 4월 입학)</strong><br><small style="color:var(--ja-color);">九州大学 夏入試 出願締切（2027年4月入学）</small></div>
+          <div class="tl-note">시스템 생명과학부 출원 마감: 2026년 6월5일~6월12일(必着) / 시험일: 2026년 7월18일. <strong>지금 당장 공식 홈페이지 확인!</strong><br><small>システム生命科学府 出願期間：2026年6月5日〜12日（必着）/ 試験日：2026年7月18日。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 7~8월</div>
+          <div class="tl-content"><strong>교수 컨택 이메일 발송 (3~5명) + 연구계획서 초안 완성</strong><br><small style="color:var(--ja-color);">教員コンタクトメール発送（3〜5名）＋研究計画書草稿完成</small></div>
+          <div class="tl-note">여름이 교수 응답 비교적 활발. 복붙 금지, 교수 논문 반드시 인용, 맞춤형 작성.<br><small>夏は教員の返信率が比較的高い。コピペ厳禁、論文引用必須、カスタマイズ作成。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 8~9월</div>
+          <div class="tl-content"><strong>교수 면담 (Zoom/대면) + 내락 획득 목표</strong><br><small style="color:var(--ja-color);">教員面談（Zoom/対面）＋内諾取得目標</small></div>
+          <div class="tl-note">면담 전 교수 논문 재정독 필수. 「受け入れます」「内諾します」 확답 획득 목표.<br><small>面談前に教員論文の再読必須。「受け入れます」「内諾します」の確答取得を目標に。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 9~10월</div>
+          <div class="tl-content"><strong>내락 확보 + 공식 출원 서류 준비 시작</strong><br><small style="color:var(--ja-color);">内諾確保＋公式出願書類準備開始</small></div>
+          <div class="tl-note">영문 성적증명서 발급, 추천서 의뢰 (최소 2개월 전 요청 권장).<br><small>英文成績証明書発行、推薦状依頼（出願2ヶ月前には依頼）。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 10~11월</div>
+          <div class="tl-content"><strong>MEXT 대사관 추천 최종 선발 결과 발표 + 각 대학 冬入試 출원 준비</strong><br><small style="color:var(--ja-color);">MEXT大使館推薦最終結果発表＋各大学冬入試出願準備</small></div>
+          <div class="tl-note">MEXT 최종 합격 시 지도 교수와 대학 추천 절차 확인.<br><small>MEXT最終合格後は指導教員と大学推薦手続きを確認。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2026년 11~12월</div>
+          <div class="tl-content"><strong>각 대학 冬入試 출원 서류 제출 (2027년 4월 입학)</strong><br><small style="color:var(--ja-color);">各大学冬入試 出願書類提出（2027年4月入学）</small></div>
+          <div class="tl-note">北海道大学 연구생 출원: 2026年12月9日〜13日(온라인) / 서류 제출 12月20日. 대학별 마감일 일본 시간 기준 확인.<br><small>北海道大学研究生出願：2026年12月9日〜13日（オンライン）/ 書類提出12月20日。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2027년 1~2월</div>
+          <div class="tl-content"><strong>입학시험 (필기 + 면접)</strong><br><small style="color:var(--ja-color);">入学試験（筆記＋面接）</small></div>
+          <div class="tl-note">대학별 시험일 상이 — 각 대학 공식 모집요강에서 정확한 날짜 반드시 확인.<br><small>大学により試験日異なる — 各大学公式募集要項にて正確な日程を必ず確認。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2027년 2~3월</div>
+          <div class="tl-content"><strong>합격 통지 수령 + 비자 신청 (在留資格認定証明書)</strong><br><small style="color:var(--ja-color);">合格通知受領＋ビザ申請（在留資格認定証明書）</small></div>
+          <div class="tl-note">발급까지 1~3개월 소요 가능, 조기 신청 권장.<br><small>発行に1〜3ヶ月かかる場合あり。早めの申請を強く推奨。</small></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">2027년 4월</div>
+          <div class="tl-content"><strong>입학 🎉 (연구생 또는 수사과정 / 研究生または修士課程)</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH9: 한국 학부 출신 특이사항 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch9">
+    <div class="section-header">
+      <div class="num">9</div>
+      <h2>한국 생물계열 학부 출신 지원자 특이사항
+        <span class="ja">韓国生物系学部出身 志願者 特記事項</span>
+      </h2>
+    </div>
+    <div class="section-body">
+
+      <div class="bilingual-block">
+        <h4 style="margin-bottom:8px; color:var(--tip-border);">✅ 강점 / 強み</h4>
+        <ul style="font-size:.9rem; padding-left:18px; margin-bottom:14px;">
+          <li>한국 주요 사립대 생물공학과 출신 — 분자생물학·발효공학·바이오의약 기초 탄탄<br>
+            <small style="color:var(--ja-color);">韓国主要私立大学の生物工学科出身 — 分子生物学・発酵工学・バイオ医薬の基礎が充実</small>
+          </li>
+          <li>한국 4년제 대학 졸업 → 일본 대학원 지원 자격(16년 교육과정) 충족<br>
+            <small style="color:var(--ja-color);">韓国4年制大学卒業 → 日本大学院出願資格（16年教育課程）を満たす</small>
+          </li>
+          <li>영어 과학 논문 읽기 능력 기본 보유<br>
+            <small style="color:var(--ja-color);">英語科学論文の読解能力が基本的に備わっている</small>
+          </li>
+        </ul>
+        <h4 style="margin-bottom:8px; color:var(--accent);">⚠ 준비 시 유의사항 / 準備上の注意点</h4>
+        <ul style="font-size:.9rem; padding-left:18px;">
+          <li><strong>JLPT</strong>: N2는 최저 기준, N1 취득 시 지원 폭과 취업 경쟁력 모두 상승<br>
+            <small style="color:var(--ja-color);"><strong>JLPT</strong>：N2は最低基準、N1取得で出願の幅と就職競争力が大幅向上</small>
+          </li>
+          <li><strong>성적 환산</strong>: 한국 대학 성적(4.5점 만점) → 일본식 GPA(4.0만점) 환산 후 제출. 성적증명서에 GPA 환산 기준 명시 요청<br>
+            <small style="color:var(--ja-color);"><strong>成績換算</strong>：韓国大学の成績（4.5点満点）→ 日本式GPA（4.0点満点）に換算して提出推奨</small>
+          </li>
+          <li><strong>영문 공인 성적증명서</strong>: 출원 3~6개월 전부터 준비 권장<br>
+            <small style="color:var(--ja-color);"><strong>英文公式成績証明書</strong>：出願3〜6ヶ月前から準備推奨</small>
+          </li>
+          <li><strong>학부 졸업논문 요약본</strong>: 일본어로 간략하게 준비하면 교수 컨택 시 유리<br>
+            <small style="color:var(--ja-color);"><strong>学部卒業論文要約</strong>：日本語の簡単な要約版を準備すると教員コンタクト時に有利</small>
+          </li>
+          <li><strong>재류자격</strong>: 합격 후 「留学」 비자 신청, 주 28시간 아르바이트 합법<br>
+            <small style="color:var(--ja-color);"><strong>在留資格</strong>：合格後「留学」ビザ申請、週28時間のアルバイト合法</small>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CH10: 체크리스트 -->
+  <!-- ============================================================ -->
+  <div class="section" id="ch10">
+    <div class="section-header">
+      <div class="num">10</div>
+      <h2>실수 방지 체크리스트
+        <span class="ja">出願ミス防止チェックリスト</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li>TOEFL/IELTS 성적 유효기간이 출원일로부터 <strong>2년 이내</strong>인가?<br><small style="color:var(--ja-color);">TOEFL/IELTSスコアの有効期限が出願日から<strong>2年以内</strong>か？</small></li>
+        <li>JLPT 합격증 준비 완료<br><small style="color:var(--ja-color);">JLPT合格証の準備完了</small></li>
+        <li>영문 성적증명서 발급 완료<br><small style="color:var(--ja-color);">英文成績証明書の取得完了</small></li>
+        <li>영문 졸업(예정)증명서 발급 완료<br><small style="color:var(--ja-color);">英文卒業（見込）証明書の取得完了</small></li>
+        <li>이메일을 복붙하지 않고 교수마다 맞춤형 작성<br><small style="color:var(--ja-color);">メールをコピペせず、各教員に合わせた作成か？</small></li>
+        <li>연구계획서가 지도 교수 연구와 연결되어 있는가?<br><small style="color:var(--ja-color);">研究計画書が指導教員の研究と関連しているか？</small></li>
+        <li>추천서 요청을 출원 <strong>2개월 전</strong>까지 의뢰했는가?<br><small style="color:var(--ja-color);">推薦状の依頼を出願<strong>2ヶ月前</strong>までに行ったか？</small></li>
+        <li>수험료 납부 방법 확인 (해외 카드 사용 가능 여부)<br><small style="color:var(--ja-color);">検定料の支払い方法確認（海外カード使用可否）</small></li>
+        <li>출원 마감일을 <strong>일본 시간 기준</strong>으로 확인했는가?<br><small style="color:var(--ja-color);">出願締切日を<strong>日本時間基準</strong>で確認したか？</small></li>
+        <li>MEXT 장학금 신청 여부 결정 및 준비 시작<br><small style="color:var(--ja-color);">MEXT奨学金の申請有無を決定し準備開始</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 결론 -->
+  <!-- ============================================================ -->
+  <div class="section">
+    <div class="section-header" style="background: linear-gradient(90deg,var(--accent) 0%,#c0392b 100%);">
+      <div class="num">✨</div>
+      <h2>결론 / まとめ — 우선순위 정리
+        <span class="ja">優先順位まとめ</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>순위</th><th>할 일 / やること</th><th>이유 / 理由</th></tr>
+          </thead>
+          <tbody>
+            <tr class="priority-row p1">
+              <td>🥇</td>
+              <td>지도 교수 리서치 + 컨택 이메일 → 내락 확보<br><small>指導教員リサーチ＋コンタクトメール→内諾獲得</small></td>
+              <td>내락 없이는 MEXT 대학추천도, 출원도 실질적으로 불가</td>
+            </tr>
+            <tr class="priority-row p2">
+              <td>🥈</td>
+              <td>TOEFL iBT 80점+ + JLPT N2+ 확보<br><small>TOEFL iBT 80点以上＋JLPT N2以上確保</small></td>
+              <td>13개 대학 중 11개교의 최저 기준 충족, MEXT 조건 충족</td>
+            </tr>
+            <tr class="priority-row p3">
+              <td>🥉</td>
+              <td>연구계획서 퀄리티 향상 (교수 연구와 연결)<br><small>研究計画書の質向上（教員研究との連結）</small></td>
+              <td>교수 컨택 성공률과 최종 합격률 모두에 직결</td>
+            </tr>
+            <tr>
+              <td>4위</td>
+              <td>MEXT 장학금 병행 지원 검토<br><small>MEXT奨学金の併願申請検討</small></td>
+              <td>합격 시 학비+생활비 거의 자비 부담 없음</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 공식 링크 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">🔗</div>
+      <h2>참고 공식 링크 / 参考公式リンク</h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>대학 / 大学</th><th>공식 입시 링크</th></tr></thead>
+          <tbody>
+            <tr><td>東京大学 農学生命科学研究科</td><td><a href="https://www.a.u-tokyo.ac.jp/english/applicants/g_rcourses.html" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>東京大学 理学系研究科</td><td><a href="https://www.s.u-tokyo.ac.jp/en/admission/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>京都大学 生命科学研究科</td><td><a href="https://www.lif.kyoto-u.ac.jp" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>京都大学 農学研究科</td><td><a href="https://www.agr.kyoto-u.ac.jp" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>大阪大学 生命機能研究科 (FBS)</td><td><a href="https://www.fbs.osaka-u.ac.jp/ja/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>大阪大学 留学生入試</td><td><a href="https://www.osaka-u.ac.jp/ja/international/inbound/examination" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>東京科学大学 (구 東工大)</td><td><a href="https://www.isct.ac.jp" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>北海道大学 生命科学院</td><td><a href="https://www.life.hokudai.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>北海道大学 入試情報</td><td><a href="https://www.hokudai.ac.jp/admission/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>名古屋大学 理学研究科</td><td><a href="https://www.sci.nagoya-u.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>名古屋大学 工学研究科</td><td><a href="https://www.engg.nagoya-u.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>九州大学 留学生入学案内</td><td><a href="https://www.isc.kyushu-u.ac.jp/invitation/admission/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>九州大学 理学府 (英語)</td><td><a href="https://www.sci.kyushu-u.ac.jp/e/admission/admission_sci.html" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>筑波大学 入試情報</td><td><a href="https://www.tsukuba.ac.jp/admission/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>東北大学 生命科学研究科</td><td><a href="https://www.lifesci.tohoku.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>東北大学 農学研究科</td><td><a href="https://www.agri.tohoku.ac.jp/jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>神戸大学 農学研究科</td><td><a href="https://www.ans.kobe-u.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>神戸大学 理学研究科</td><td><a href="https://www.sci.kobe-u.ac.jp/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>広島大学 統合生命科学研究科 (IDSE)</td><td><a href="https://www.hiroshima-u.ac.jp/idse" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>慶應義塾大学 理工学研究科</td><td><a href="https://www.st.keio.ac.jp/graduate/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>NAIST 先端科学技術研究科</td><td><a href="https://www.naist.jp/admissions/" target="_blank">공식 홈페이지 →</a></td></tr>
+            <tr><td>주한일본대사관 (MEXT 장학금)</td><td><a href="https://www.kr.emb-japan.go.jp" target="_blank">공식 홈페이지 →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>🎓 일본 대학원 생물계열 수험 가이드 | 日本大学院 生物系 受験ガイド</p>
+  <p>본 자료는 2026년 5월 기준 공개 정보를 검색·확인하여 작성되었습니다. 합격을 보장하지 않으며, 법적 효력이 없습니다.<br>
+  本資料は2026年5月時点の公開情報に基づき作成されています。合格保証・法的効力はありません。</p>
+  <p style="margin-top:8px;">최신 정보는 각 대학 공식 홈페이지에서 반드시 재확인하시기 바랍니다。<br>
+  最新情報は各大学公式HPにて必ずご確認ください。</p>
+</footer>
+
+</body>
+</html>
