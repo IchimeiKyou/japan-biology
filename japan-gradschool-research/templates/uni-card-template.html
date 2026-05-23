@@ -1,0 +1,99 @@
+<!--
+  UNI-CARD TEMPLATE FRAGMENT — japan-gradschool-research skill
+  =============================================================
+  이 파일은 대학원 1개교의 카드 HTML 조각입니다.
+  SKILL.md Step 4(모드 B/D)에서 이 파일을 Read하여 플레이스홀더를 치환한 뒤
+  report-template.html 의 <!-- INSERT:UNI-CARDS --> 위치에 삽입합니다.
+
+  필수 플레이스홀더:
+    {{UNIV_EMOJI}}          대학 대표 이모지 (중복 없이 선택)
+    {{UNIV_NAME_JA}}        대학원 공식 일본어 명칭 (研究科명 포함)
+    {{UNIV_NAME_KO}}        대학원 한국어 명칭
+    {{UNIV_LOCATION_KO}}    소재지 한국어 (예: 도쿄도 분쿄구)
+    {{UNIV_LOCATION_JA}}    소재지 일본어 (예: 東京都文京区)
+    {{DEPT_LIST_ITEMS}}     전공·전공 목록 <li> 복수 행 ({{DEPT_NAME_JA}} / {{DEPT_NAME_KO}})
+    {{TOEFL_MIN}}           TOEFL iBT 최저 점수 또는 "미지정 / 未指定"
+    {{JLPT_REQ}}            JLPT 요구 레벨 또는 "불필요 / 不要"
+    {{GPA_NOTE_KO}}         GPA 관련 한국어 주석
+    {{GPA_NOTE_JA}}         GPA 관련 일본어 주석
+    {{EXAM_SEASON_KO}}      입시 시기 한국어 (예: 여름 입시)
+    {{EXAM_SEASON_JA}}      입시 시기 일본어 (예: 夏入試)
+    {{APP_WINDOW_KO}}       원서 접수 기간 한국어 (예: 2026년 5~6월경)
+    {{APP_WINDOW_JA}}       원서 접수 기간 일본어 (예: 2026年5〜6月頃)
+    {{KENKYUSEI_NOTE_KO}}   연구생 루트 한국어 설명
+    {{KENKYUSEI_NOTE_JA}}   연구생 루트 일본어 설명
+    {{OFFICIAL_LINK_URL}}   공식 모집요강 URL
+    {{WARN_BOX_CONTENT}}    warn-box 내용 (없으면 이 블록 전체 삭제)
+    {{TIP_BOX_CONTENT}}     tip-box 내용 (없으면 이 블록 전체 삭제)
+    {{DATA_DATE}}           정보 기준 연월 (예: 2026-05)
+
+  JLPT 불필요 시: .score-badge.jlpt 행 전체 삭제
+  warn-box 없으면: .warn-box 전체 블록 삭제
+  tip 없으면: .tip 전체 블록 삭제
+-->
+
+<div class="uni-card">
+  <div class="uni-card-header">
+    <div class="uni-icon">{{UNIV_EMOJI}}</div>
+    <div>
+      <h3>{{UNIV_NAME_JA}}</h3>
+      <small style="display:block; color:var(--ja-color); font-size:.8rem;">{{UNIV_NAME_KO}}</small>
+      <div class="loc">📍 {{UNIV_LOCATION_KO}} / {{UNIV_LOCATION_JA}}</div>
+    </div>
+  </div>
+  <div class="uni-card-body">
+    <!-- 전공 목록 -->
+    <ul>
+      {{DEPT_LIST_ITEMS}}
+      <!--
+      EXAMPLE dept item:
+      <li>生命農学研究科 生物圏資源学専攻<br>
+          <small style="color:var(--ja-color);">생명농학연구과 생물권자원학전공</small></li>
+      -->
+    </ul>
+
+    <!-- 어학/성적 배지 -->
+    <div class="score-row">
+      <span class="score-badge toefl">TOEFL iBT {{TOEFL_MIN}}+</span>
+      <span class="score-badge jlpt">JLPT {{JLPT_REQ}}</span>
+      <!-- GPA 배지 (GPA 기준이 있을 경우만 포함) -->
+      <!-- <span class="score-badge gpa">GPA {{GPA_VALUE}}</span> -->
+    </div>
+
+    <!-- GPA 주석 -->
+    <p style="font-size:.8rem; color:var(--muted); margin-top:6px;">
+      {{GPA_NOTE_KO}}<br>
+      <small style="color:var(--ja-color);">{{GPA_NOTE_JA}}</small>
+    </p>
+
+    <!-- 입시 시기 -->
+    <p style="margin-top:10px; font-size:.88rem;">
+      📅 <strong>{{EXAM_SEASON_KO}}</strong>: 원서 {{APP_WINDOW_KO}}<br>
+      <small style="color:var(--ja-color);">📅 <strong>{{EXAM_SEASON_JA}}</strong>：出願 {{APP_WINDOW_JA}}</small>
+    </p>
+
+    <!-- 연구생 루트 -->
+    <p style="margin-top:8px; font-size:.85rem; color:var(--muted);">
+      🔬 {{KENKYUSEI_NOTE_KO}}<br>
+      <small style="color:var(--ja-color);">🔬 {{KENKYUSEI_NOTE_JA}}</small>
+    </p>
+
+    <!-- warn-box (해당 없으면 삭제) -->
+    <div class="warn-box" style="margin-top:10px; font-size:.8rem;">
+      {{WARN_BOX_CONTENT}}
+    </div>
+
+    <!-- tip-box (해당 없으면 삭제) -->
+    <div class="tip" style="margin-top:8px; font-size:.8rem;">
+      {{TIP_BOX_CONTENT}}
+    </div>
+
+    <!-- 공식 링크 -->
+    <a href="{{OFFICIAL_LINK_URL}}" target="_blank" class="uni-link">공식 링크 / 公式リンク →</a>
+
+    <!-- 정보 기준일 -->
+    <p style="font-size:.72rem; color:var(--muted); margin-top:8px;">
+      ℹ 정보 기준: {{DATA_DATE}} | 情報基準: {{DATA_DATE}}
+    </p>
+  </div>
+</div>

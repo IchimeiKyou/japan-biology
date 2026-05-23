@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<!--
+  REPORT TEMPLATE — japan-gradschool-research skill
+  ===================================================
+  사용 방법 (Usage):
+    1. 이 파일을 Read한다.
+    2. {{PLACEHOLDER}} 를 실제 데이터로 치환한다.
+    3. <!-- INSERT:UNI-CARDS --> 주석 위치에 uni-card-template.html 카드를 삽입한다.
+    4. <!-- EXAMPLE: ... --> 블록은 모두 삭제한다.
+    5. 완성 파일을 output_dir 에 저장한다.
+
+  주요 플레이스홀더 목록:
+    {{GUIDE_TITLE_KO}}      페이지 제목 (한국어)
+    {{GUIDE_TITLE_JA}}      페이지 제목 (일본어)
+    {{DATA_DATE}}           정보 기준 연월 (예: 2026-05)
+    {{TOC_ITEMS}}           목차 <li> 항목들
+    {{NOTICE_TEXT_KO}}      상단 공지 한국어 본문
+    {{NOTICE_TEXT_JA}}      상단 공지 일본어 본문
+    {{LANG_TABLE_ROWS}}     어학 요건 비교표 <tr> 행들
+    {{TIMELINE_ITEMS}}      연간 타임라인 <div class="tl-item"> 항목들
+    {{SCHOL_CARDS}}         장학금 카드 <div class="schol-card"> 항목들
+    {{COST_TABLE_ROWS}}     생활비 비교표 <tr> 행들
+    {{EMAIL_TEMPLATE_KO}}   교수 컨택 이메일 한국어 설명
+    {{EMAIL_BODY_JA}}       이메일 본문 일본어
+    {{CHECKLIST_ITEMS}}     출원 체크리스트 <li> 항목들
+    {{PRIORITY_TABLE_ROWS}} 대학 우선순위표 <tr> 행들
+    {{FOOTER_YEAR}}         footer 연도
+    {{FOOTER_NOTE_KO}}      footer 한국어 주석
+    {{FOOTER_NOTE_JA}}      footer 일본어 주석
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{GUIDE_TITLE_KO}} / {{GUIDE_TITLE_JA}}</title>
+  <style>
+    /* ──────────────────────────────────────────
+       Base & Reset
+    ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:   #1a3f6f;
+      --secondary: #2e7d9e;
+      --accent:    #e07b2a;
+      --accent2:   #c0392b;
+      --bg:        #f5f7fb;
+      --card:      #ffffff;
+      --border:    #d0daea;
+      --text:      #1e2a3a;
+      --muted:     #5a6a80;
+      --ja-color:  #1b4d3e;
+      --ja-bg:     #eaf4f0;
+      --ko-color:  #1a3f6f;
+      --ko-bg:     #eef3fb;
+      --warn-bg:   #fff8e1;
+      --warn-border:#f9a825;
+      --tip-bg:    #e8f5e9;
+      --tip-border:#43a047;
+      --radius:    10px;
+      --shadow:    0 2px 12px rgba(0,0,0,.08);
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Noto Sans JP', 'Malgun Gothic', 'MS PGothic', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: #fff;
+      padding: 56px 32px 48px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 20px;
+      font-size: 12px;
+      padding: 4px 14px;
+      margin-bottom: 18px;
+      letter-spacing: .06em;
+    }
+    .hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.3; margin-bottom: 10px; }
+    .hero h2 { font-size: 1.2rem; font-weight: 400; opacity: .85; margin-bottom: 18px; }
+    .hero .subtitle { font-size: .9rem; opacity: .7; }
+
+    /* ── Layout ── */
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 20px 60px; }
+
+    /* ── Notice ── */
+    .notice {
+      background: var(--warn-bg);
+      border-left: 5px solid var(--warn-border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 28px 0 10px;
+      font-size: .88rem;
+    }
+    .notice strong { color: #b26a00; }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin: 24px 0 36px;
+      box-shadow: var(--shadow);
+    }
+    .toc h3 { font-size: 1rem; color: var(--primary); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .toc ol { padding-left: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+    .toc li { font-size: .9rem; }
+    .toc a { color: var(--secondary); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    @media(max-width:600px) { .toc ol { grid-template-columns: 1fr; } }
+
+    /* ── Section ── */
+    .section {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-header .num {
+      background: rgba(255,255,255,.2);
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem; flex-shrink: 0;
+    }
+    .section-header h2 { font-size: 1.1rem; font-weight: 700; line-height: 1.3; }
+    .section-header h2 .ja { display: block; font-size: .85rem; font-weight: 400; opacity: .8; margin-top: 2px; }
+    .section-body { padding: 24px; }
+
+    /* ── Bilingual Block ── */
+    .bilingual-block {
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      background: var(--ko-bg);
+      border-left: 4px solid var(--ko-color);
+    }
+    .bilingual-block .ja-sub { display: block; font-size: 0.87em; color: var(--ja-color); margin-top: 3px; line-height: 1.55; }
+
+    /* ── University Cards ── */
+    .uni-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 8px;
+    }
+    .uni-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.06); transition: box-shadow .2s; }
+    .uni-card:hover { box-shadow: 0 4px 18px rgba(0,0,0,.12); }
+    .uni-card-header { padding: 14px 18px 10px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; }
+    .uni-icon { font-size: 1.8rem; line-height: 1; flex-shrink: 0; }
+    .uni-card-header h3 { font-size: 1rem; color: var(--primary); margin-bottom: 2px; }
+    .uni-card-header .loc { font-size: .8rem; color: var(--muted); }
+    .uni-card-body { padding: 14px 18px; }
+    .uni-card-body ul { padding-left: 16px; font-size: .88rem; line-height: 1.7; }
+    .uni-card-body ul li { margin-bottom: 3px; }
+
+    .score-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .score-badge { font-size: .78rem; padding: 3px 10px; border-radius: 14px; font-weight: 600; }
+    .score-badge.toefl { background: #e3f2fd; color: #0d47a1; }
+    .score-badge.jlpt  { background: #fce4ec; color: #880e4f; }
+    .score-badge.gpa   { background: #e8f5e9; color: #1b5e20; }
+    .score-badge.warn  { background: #fff3e0; color: #e65100; }
+
+    .uni-link { display: inline-block; margin-top: 10px; font-size: .8rem; color: var(--secondary); text-decoration: none; border: 1px solid var(--secondary); border-radius: 5px; padding: 3px 10px; }
+    .uni-link:hover { background: var(--secondary); color: #fff; }
+
+    /* ── Tables ── */
+    .table-wrap { overflow-x: auto; margin: 14px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    thead tr { background: var(--primary); color: #fff; }
+    thead th { padding: 10px 14px; text-align: left; }
+    tbody tr:nth-child(even) { background: #f4f7fb; }
+    tbody tr:hover { background: #e8eef7; }
+    tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .highlight-row td { font-weight: 600; color: var(--accent2); }
+    td .note { font-size: .78rem; color: var(--muted); }
+
+    /* ── Steps ── */
+    .steps { counter-reset: step; }
+    .step { display: flex; gap: 18px; margin-bottom: 28px; align-items: flex-start; }
+    .step-num { counter-increment: step; background: var(--secondary); color: #fff; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .step-content h4 { font-size: 1rem; color: var(--primary); margin-bottom: 6px; }
+    .step-content p, .step-content ul { font-size: .9rem; color: var(--text); }
+    .step-content ul { padding-left: 18px; }
+    .step-content li { margin-bottom: 4px; }
+
+    /* ── Email Box ── */
+    .email-box { background: #1e2a3a; color: #e0e8f0; border-radius: 8px; padding: 20px 22px; font-family: 'Courier New', monospace; font-size: .82rem; line-height: 1.7; margin: 14px 0; white-space: pre-wrap; word-break: break-all; }
+    .email-box .comment { color: #7ec8a0; }
+    .email-box .field   { color: #f9a825; font-style: italic; }
+
+    /* ── Scholarship Cards ── */
+    .schol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 10px; }
+    .schol-card { border-radius: 8px; padding: 18px; border: 1px solid var(--border); }
+    .schol-card.main  { border-top: 4px solid var(--accent); }
+    .schol-card.sub   { border-top: 4px solid var(--secondary); }
+    .schol-card h4    { font-size: .95rem; margin-bottom: 10px; color: var(--primary); }
+    .schol-card .amount { font-size: 1.2rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .schol-card ul { padding-left: 16px; font-size: .85rem; }
+    .schol-card li { margin-bottom: 4px; }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 3px; background: linear-gradient(to bottom, var(--secondary), var(--accent)); border-radius: 3px; }
+    .tl-item { position: relative; margin-bottom: 22px; }
+    .tl-item::before { content: ''; position: absolute; left: -22px; top: 7px; width: 12px; height: 12px; background: var(--secondary); border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px var(--secondary); }
+    .tl-date { font-size: .8rem; font-weight: 700; color: var(--secondary); margin-bottom: 4px; }
+    .tl-content { font-size: .9rem; }
+    .tl-content strong { color: var(--primary); }
+    .tl-note { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Checklist ── */
+    .checklist { list-style: none; padding: 0; }
+    .checklist li { padding: 8px 10px 8px 36px; position: relative; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before { content: '☐'; position: absolute; left: 10px; color: var(--secondary); font-size: 1.1rem; }
+
+    /* ── Tip / Warn Boxes ── */
+    .tip { background: var(--tip-bg); border-left: 4px solid var(--tip-border); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: .88rem; }
+    .tip strong { color: #1b5e20; }
+    .warn-box { background: var(--warn-bg); border-left: 4px solid var(--warn-border); border-radius: 6px; padding: 12px 16px; margin: 12px 0; font-size: .88rem; }
+
+    /* ── Priority Table ── */
+    .priority-row td:first-child { font-size: 1.2rem; text-align: center; }
+    .priority-row.p1 td { background: #fff8e1; font-weight: 600; }
+    .priority-row.p2 td { background: #f3e5f5; }
+    .priority-row.p3 td { background: #e8f5e9; }
+
+    /* ── Footer ── */
+    footer { background: var(--primary); color: rgba(255,255,255,.75); text-align: center; padding: 24px 20px; font-size: .82rem; line-height: 1.8; }
+    footer a { color: rgba(255,255,255,.9); }
+
+    /* ── Responsive ── */
+    @media(max-width:640px) {
+      .hero h1 { font-size: 1.4rem; }
+      .uni-grid, .schol-grid { grid-template-columns: 1fr; }
+      .step { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<div class="hero">
+  <div class="badge">{{DATA_DATE}} 기준 검색·확인 완료 | {{DATA_DATE}}時点 調査済み</div>
+  <h1>🎓 {{GUIDE_TITLE_KO}}<br>{{GUIDE_TITLE_JA}}</h1>
+  <h2>한국 생물계열 학부 졸업 예정자를 위한 한일 이중언어 완전 공략<br>
+  韓国 生物系学部 卒業予定者のための韓日バイリンガル完全攻略</h2>
+  <div class="subtitle">⚠ 입시 정보는 매년 변경됩니다. 각 대학 공식 홈페이지에서 최신 모집요강을 반드시 재확인하세요.<br>
+  入試情報は毎年変更されます。各大学公式HPにて最新の募集要項を必ずご確認ください。</div>
+</div>
+
+<!-- ============================================================
+     CONTAINER
+============================================================ -->
+<div class="container">
+
+  <div class="notice">
+    <strong>⚠ 공지 / 注意</strong>：{{NOTICE_TEXT_KO}}<br>
+    {{NOTICE_TEXT_JA}}
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h3>📋 목차 / 目次</h3>
+    <ol>
+      {{TOC_ITEMS}}
+      <!-- EXAMPLE:
+      <li><a href="#ch1">일본 대학원 제도 기초 / 日本大学院制度基礎</a></li>
+      <li><a href="#ch2">강점 대학 상세 / 大学院詳細</a></li>
+      <li><a href="#ch3">어학 요건 비교표 / 語学要件比較</a></li>
+      <li><a href="#ch4">연간 스케줄 / 年間スケジュール</a></li>
+      <li><a href="#ch5">교수 컨택 전략 / 教員コンタクト戦略</a></li>
+      <li><a href="#ch6">장학금 / 奨学金</a></li>
+      <li><a href="#ch7">생활비 / 生活費</a></li>
+      <li><a href="#ch8">출원 체크리스트 / 出願チェックリスト</a></li>
+      <li><a href="#ch9">대학 우선순위 / 大学優先順位</a></li>
+      -->
+    </ol>
+  </div>
+
+  <!-- ============================================================
+       Ch1: 제도 기초
+  ============================================================ -->
+  <div class="section" id="ch1">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>일본 대학원 제도 기초
+        <span class="ja">日本大学院制度 基礎知識</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="bilingual-block">
+        <strong>수사과정(修士課程)</strong>: 학부 졸업 후 2년 과정. 연구생(研究生) 루트 → 수사과정 진학 가능.<br>
+        <span class="ja-sub"><strong>修士課程</strong>：学部卒業後2年間。研究生ルート→修士課程進学も可能。</span>
+      </div>
+      <div class="bilingual-block">
+        <strong>연구생(研究生)</strong>: 정규 입학 전 지도교수 연구실에서 비학위 준비 과정. 일본어 능력 낮아도 입학 가능 경우 있음.<br>
+        <span class="ja-sub"><strong>研究生</strong>：正規入学前に指導教員の研究室で非学位準備課程。日本語能力が低くても入学できる場合あり。</span>
+      </div>
+      <div class="bilingual-block">
+        <strong>내낙(内諾)</strong>: 지도교수로부터 "받아들이겠다"는 비공식 수락. 공식 출원 전 반드시 취득 필요.<br>
+        <span class="ja-sub"><strong>内諾</strong>：指導教員から「受け入れます」という非公式の承諾。正式出願前に必ず取得が必要。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch2: 대학 카드 그리드
+  ============================================================ -->
+  <div class="section" id="ch2">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>강점 대학 상세
+        <span class="ja">注目大学院 詳細</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="uni-grid">
+        <!-- INSERT:UNI-CARDS -->
+        <!-- uni-card-template.html 에서 생성된 카드를 이 주석 위에 삽입 -->
+        <!-- UNI-CARD-END -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch3: 어학 요건
+  ============================================================ -->
+  <div class="section" id="ch3">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>어학 요건 비교표
+        <span class="ja">語学要件 比較表</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>대학원 / 大学院</th>
+              <th>TOEFL iBT</th>
+              <th>IELTS</th>
+              <th>JLPT</th>
+              <th>비고 / 備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{LANG_TABLE_ROWS}}
+            <!-- EXAMPLE:
+            <tr>
+              <td>東京大学 農学生命科学研究科</td>
+              <td>79 이상 / 79以上</td>
+              <td>—</td>
+              <td>불필요 / 不要</td>
+              <td class="note">영어 전형 존재 / 英語入試あり</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch4: 연간 스케줄
+  ============================================================ -->
+  <div class="section" id="ch4">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>연간 스케줄
+        <span class="ja">年間スケジュール</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="timeline">
+        {{TIMELINE_ITEMS}}
+        <!-- EXAMPLE:
+        <div class="tl-item">
+          <div class="tl-date">1~2월 / 1〜2月</div>
+          <div class="tl-content"><strong>진학 희망 연구실 조사 / 進学希望研究室 調査</strong><br>
+          지도교수 후보 리스트 작성, 논문 검색으로 연구 내용 파악<br>
+          <small style="color:var(--ja-color);">指導教員候補リスト作成、論文検索で研究内容把握</small></div>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch5: 교수 컨택 전략
+  ============================================================ -->
+  <div class="section" id="ch5">
+    <div class="section-header">
+      <div class="num">5</div>
+      <h2>교수 컨택 전략
+        <span class="ja">教員コンタクト戦略</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>연구실 선정 / 研究室の選定</h4>
+            <p>관심 분야의 논문 검색 → 저자 소속 확인 → 연구실 홈페이지 방문<br>
+            <small style="color:var(--ja-color);">興味分野の論文検索→著者所属確認→研究室HPを訪問</small></p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>첫 연락 이메일 발송 / 最初のメール送信</h4>
+            <p>자기소개 + 연구 관심사 + 희망 입학 시기 명시. 반드시 교수별 맞춤형 작성.<br>
+            <small style="color:var(--ja-color);">自己紹介+研究関心+入学希望時期を明記。必ず教員ごとにカスタマイズ。</small></p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>내낙 취득 / 内諾の取得</h4>
+            <p>교수로부터 "受け入れます / 内諾します" 확인 후 공식 출원 절차 개시<br>
+            <small style="color:var(--ja-color);">教授から「受け入れます/内諾します」の確認後、正式出願手続き開始</small></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        ⚠ <strong>절대 금지 / 絶対禁止</strong>: 같은 내용을 여러 교수에게 복붙 발송 → 발각 시 지원 기회 상실<br>
+        <small style="color:var(--ja-color);">同じ文面のコピペ送信は絶対禁止。発覚した場合、出願機会を失う。</small>
+      </div>
+
+      <p style="margin-top:16px; font-size:.9rem;"><strong>교수 컨택 이메일 예시 / 教員コンタクトメール 例文</strong><br>
+      <small style="color:var(--ja-color);">{{EMAIL_TEMPLATE_KO}}</small></p>
+      <div class="email-box">{{EMAIL_BODY_JA}}
+<!-- EXAMPLE:
+<span class="comment">件名：研究室訪問のお願い（韓国 ○○大学 △△）</span>
+
+○○先生
+
+突然のご連絡を失礼いたします。
+私は<span class="field">[お名前]</span>と申します。現在、韓国の<span class="field">[大学名]</span>で
+生物工学を専攻している学部4年生です。
+
+先生の<span class="field">[論文タイトル]</span>を拝読し、
+<span class="field">[具体的な研究内容]</span>の研究に大変感銘を受けました。
+
+<span class="field">[入学希望年度]</span>に貴研究科への進学を希望しており、
+可能であれば先生の研究室への入室についてご検討いただけますでしょうか。
+
+何卒よろしくお願いいたします。
+<span class="field">[お名前]</span>
+<span class="field">[連絡先メールアドレス]</span>
+-->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch6: 장학금
+  ============================================================ -->
+  <div class="section" id="ch6">
+    <div class="section-header">
+      <div class="num">6</div>
+      <h2>장학금 정보
+        <span class="ja">奨学金情報</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="schol-grid">
+        {{SCHOL_CARDS}}
+        <!-- EXAMPLE:
+        <div class="schol-card main">
+          <h4>MEXT 국비 유학생<br><small style="color:var(--ja-color);">文部科学省 国費外国人留学生</small></h4>
+          <div class="amount">월 ¥148,000</div>
+          <ul>
+            <li>수업료·입학금 면제 / 授業料・入学金免除</li>
+            <li>항공권 지원 / 航空券支援</li>
+            <li>학교 추천 / 학교별 모집요강 확인 / 大学推薦</li>
+          </ul>
+        </div>
+        -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch7: 생활비
+  ============================================================ -->
+  <div class="section" id="ch7">
+    <div class="section-header">
+      <div class="num">7</div>
+      <h2>도시별 생활비 가이드
+        <span class="ja">都市別 生活費ガイド</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>도시 / 都市</th>
+              <th>월 생활비 / 月生活費</th>
+              <th>기숙사 유무 / 寮</th>
+              <th>비고 / 備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{COST_TABLE_ROWS}}
+            <!-- EXAMPLE:
+            <tr class="highlight-row">
+              <td>東京</td>
+              <td>10~13만 엔 / 10〜13万円</td>
+              <td>○ (대부분 대학 / ほぼ全大学)</td>
+              <td class="note">기숙사 대기 1~2년 / 寮待機1〜2年</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch8: 출원 체크리스트
+  ============================================================ -->
+  <div class="section" id="ch8">
+    <div class="section-header">
+      <div class="num">8</div>
+      <h2>출원 체크리스트
+        <span class="ja">出願チェックリスト</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        {{CHECKLIST_ITEMS}}
+        <!-- EXAMPLE:
+        <li>내낙(内諾) 취득 완료 / 内諾取得済み</li>
+        <li>TOEFL/IELTS 공식 성적표 (원본 또는 전자) / TOEFL/IELTS 公式スコアレポート</li>
+        <li>성적증명서 (일본어 또는 영어 번역본 포함) / 成績証明書（日本語または英語翻訳付き）</li>
+        <li>졸업(예정)증명서 / 卒業（見込）証明書</li>
+        <li>연구계획서 (2,000자 이상) / 研究計画書（2,000字以上）</li>
+        <li>지도교수 추천서 (봉인 필수) / 指導教員 推薦状（封印必要）</li>
+        <li>여권 사본 / パスポートコピー</li>
+        <li>입학금·심사료 납부 / 入学金・審査料 納付</li>
+        -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Ch9: 대학 우선순위
+  ============================================================ -->
+  <div class="section" id="ch9">
+    <div class="section-header">
+      <div class="num">9</div>
+      <h2>대학 지망 우선순위
+        <span class="ja">大学志望 優先順位</span>
+      </h2>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>등급 / ランク</th>
+              <th>대학원 / 大学院</th>
+              <th>입학 난이도 / 難易度</th>
+              <th>권고 사항 / 推奨事項</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{PRIORITY_TABLE_ROWS}}
+            <!-- EXAMPLE:
+            <tr class="priority-row p1">
+              <td>⭐⭐⭐</td>
+              <td>東京大学 農学生命科学研究科</td>
+              <td>최상 / 最難関</td>
+              <td>내낙 12~18개월 전 필수 / 内諾12〜18ヶ月前必須</td>
+            </tr>
+            -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <p>{{FOOTER_NOTE_KO}}<br>
+  {{FOOTER_NOTE_JA}}</p>
+  <p style="margin-top:8px; opacity:.6;">© {{FOOTER_YEAR}} japan-gradschool-research skill — AgentConstruction</p>
+</footer>
+
+</body>
+</html>
