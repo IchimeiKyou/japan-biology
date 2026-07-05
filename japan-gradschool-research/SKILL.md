@@ -25,7 +25,7 @@ allowed-tools: WebSearch, WebFetch, Write, Read, Edit, Bash
 | 변수 | JSON 키 | 예시 |
 |------|---------|------|
 | 출력 디렉터리 | `japan_gradschool.output_dir` | `~/JapanGradReports` |
-| 메인 가이드 파일 | `japan_gradschool.guide_file` | `D:/AgentConstruction/japan_bio_grad_guide.html` |
+| 메인 가이드 파일 | `japan_gradschool.guide_file` | `japan_bio_grad_guide/index.html` |
 | 조사 대상 전공 | `japan_gradschool.target_fields` | `["生物工学", "分子生物学", ...]` |
 
 ### 0-2. 인텐트 감지 (Mode Detection)
