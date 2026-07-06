@@ -206,4 +206,4 @@ All information is sourced from official university websites (`ac.jp` domains), 
 
 ---
 
-*Last updated: 2026-05 · Maintained by [AgentConstruction](https://github.com/your-org/AgentConstruction) `japan-gradschool-research` skill*
+*Last updated: 2026-07 · Maintained by [AgentConstruction](https://github.com/your-org/AgentConstruction) `japan-gradschool-research` skill*
